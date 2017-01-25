@@ -9,8 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.washington.tessaev1.lifecounter.MainActivity"
-    tools:background="@color/background">
+    tools:context="edu.washington.tessaev1.lifecounter.MainActivity">
 
     <LinearLayout
         android:orientation="horizontal"
