@@ -6,15 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static android.R.attr.name;
-
 public class MainActivity extends AppCompatActivity {
 
     public Button increase;
     public Button decrease;
     public Button increaseFive;
     public Button decreaseFive;
-//    public TextView lives;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,64 +39,39 @@ public class MainActivity extends AppCompatActivity {
         final TextView lifeCount = (TextView) findViewById(playerInfo[1]);
 
         increase = (Button) findViewById(playerInfo[2]);
-        increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(v, 1, lifeCount, name);
-            }
-        });
-        decrease = (Button) findViewById(playerInfo[3]);
-        decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(v, -1, lifeCount, name);
-            }
-        });
-        increaseFive = (Button) findViewById(playerInfo[4]);
-        increaseFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(v, 5, lifeCount, name);
-            }
-        });
-        decreaseFive = (Button) findViewById(playerInfo[5]);
-        decreaseFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update(v, -5, lifeCount, name);
-            }
-        });
+        increase.setOnClickListener(new ButtonListener(1, lifeCount, name));
 
-//        increase.setOnClickListener(new ButtonListener(1));
-//        decrease.setOnClickListener(new ButtonListener(-1));
-//        increaseFive.setOnClickListener(new ButtonListener(5));
-//        decreaseFive.setOnClickListener(new ButtonListener(-5));
+        decrease = (Button) findViewById(playerInfo[3]);
+        decrease.setOnClickListener(new ButtonListener(-1, lifeCount, name));
+
+        increaseFive = (Button) findViewById(playerInfo[4]);
+        increaseFive.setOnClickListener(new ButtonListener(5, lifeCount, name));
+
+        decreaseFive = (Button) findViewById(playerInfo[5]);
+        decreaseFive.setOnClickListener(new ButtonListener(-5, lifeCount, name));
     }
 
-    public void update(View v, int add, TextView lifeCount, String name) {
-        int count = Integer.parseInt(lifeCount.getText().toString().split(" ")[0]);
-        count += add;
-        lifeCount.setText(count + " lives");
-        if(count <= 0) {
-            final TextView loser = (TextView) findViewById(R.id.loser_message);
-            loser.setText(name + " LOSES!");
-            loser.setVisibility(View.VISIBLE);
+    public class ButtonListener implements View.OnClickListener {
+        public int add;
+        public TextView lifeCount;
+        public String currentName;
+
+        public ButtonListener(int num, TextView count, String name) {
+            add = num;
+            lifeCount = count;
+            currentName = name;
         }
 
+        @Override
+        public void onClick(View v) {
+            int count = Integer.parseInt(lifeCount.getText().toString().split(" ")[0]);
+            count += add;
+            lifeCount.setText(count + " lives");
+            if(count <= 0) {
+                final TextView loser = (TextView) findViewById(R.id.loser_message);
+                loser.setText(currentName + " LOSES!");
+                loser.setVisibility(View.VISIBLE);
+            }
+        }
     }
-
-//    public class ButtonListener implements View.OnClickListener {
-//        public int action;
-//
-//        public ButtonListener(int num) {
-//            action = num;
-//        }
-//
-//        @Override
-//        public void onClick(View v) {
-//            int count = Integer.parseInt(lives.getText().toString().split(" ")[0]);
-//            count += action;
-//            lives.setText(count + " lives");
-//        }
-//    }
 }
