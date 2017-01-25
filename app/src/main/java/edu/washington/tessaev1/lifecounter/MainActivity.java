@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
 import android.widget.TextView;
 
 import static android.R.attr.name;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         int[] playerOne = {R.id.player1, R.id.count1, R.id.plus1, R.id.minus1, R.id.plus_five1,
-                            R.id.minus_five1};
+                R.id.minus_five1};
         int[] playerTwo = {R.id.player2, R.id.count2, R.id.plus2, R.id.minus2, R.id.plus_five2,
                 R.id.minus_five2};
         int[] playerThree = {R.id.player3, R.id.count3, R.id.plus3, R.id.minus3, R.id.plus_five3,
